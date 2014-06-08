@@ -12,8 +12,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -33,10 +35,17 @@ public class HubResource {
     private static  final Map<String, List<SubscribeBean>> subscribers = Collections.synchronizedMap(new HashMap<String, List<SubscribeBean>>());
     
     
-   /* metodo usado para publicar atualizações, para isto p publish deve passar o
-    identificador do topico e a atualização que será enviada para os
+   /* metodo usado para publicar atualizaï¿½ï¿½es, para isto p publish deve passar o
+    identificador do topico e a atualizaï¿½ï¿½o que serï¿½ enviada para os
     subscriber
     */
+    
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String teste(){
+    	return "funcinando";
+    }
+    
     
     @PUT
     @Path("publish/{idTopic}")
@@ -48,9 +57,9 @@ public class HubResource {
         
     }
     
-   /* método usado para registrar um tópico no hub, para isto o publish deve 
-    enviar o identificador do topico. Caso o topico não exista ele será´cadadtrado
-    e retornara a string sucess, caso o topico ja esteja cadastrado ele retornará
+   /* mï¿½todo usado para registrar um tï¿½pico no hub, para isto o publish deve 
+    enviar o identificador do topico. Caso o topico nï¿½o exista ele serï¿½cadadtrado
+    e retornara a string sucess, caso o topico ja esteja cadastrado ele retornarï¿½
     "the topic "+idTopic+" already exists"*/
 
     @PUT
@@ -67,9 +76,9 @@ public class HubResource {
     	
     }
     
-   /* metodo usado pelo subscriber para registrar interesse em receber atualizações 
+   /* metodo usado pelo subscriber para registrar interesse em receber atualizaï¿½ï¿½es 
     acerca de um topico, para isso ele deve enviar um objeto do tipo subscriberbean
-    que contem seu endereço ip, a porta na quala aguardara pelas atualizações
+    que contem seu endereï¿½o ip, a porta na quala aguardara pelas atualizaï¿½ï¿½es
      e o topico de interesse*/
    
     @PUT
@@ -88,9 +97,9 @@ public class HubResource {
     }
 
     /*
-    metodo usado pelo subscribe para cancelar o interesse em receber atualizações a cerca 
-    de um tópico, para isso ele deve enviar um objeto do tipo subscriberbean
-    que contem seu endereço ip, a porta na quala aguardar pelas atualizações
+    metodo usado pelo subscribe para cancelar o interesse em receber atualizaï¿½ï¿½es a cerca 
+    de um tï¿½pico, para isso ele deve enviar um objeto do tipo subscriberbean
+    que contem seu endereï¿½o ip, a porta na quala aguardar pelas atualizaï¿½ï¿½es
     e o topico de interesse*/
     
     @DELETE
